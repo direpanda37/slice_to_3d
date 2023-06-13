@@ -39,10 +39,10 @@ Output from the network is a 512*512 which represents mask that should be learne
 
 This tutorial depends on the following libraries:
 
+* Python 3.10 was used, but should work with as far back as 2.7 with some code tweaks
 * Tensorflow (used 2.12), Keras >= 1.0 for building a model, training/loading weights, and segmenting images
 * Scikit.measure, STL for constructing 3D model
-
-Also, this code should be compatible with Python versions 2.7-3.5.
+* Git Large File System had was required for uploaded the weight file to GitHub
 
 ### follow the main_create_3d_volume notebook
 
