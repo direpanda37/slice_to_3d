@@ -8,7 +8,7 @@
 - Streamline the use of volumetric electron microscopy (vEM) cell images to create a 3D model for the purpose of gaining *"deeper understanding of the cellular and subcellular organization of tumor cells and their interactions with the tumor microenvironment (to) shed light on how cancer evolves and guide effective therapy choices."*
 - Provide models and tools for researchers to tailor to meet their needs
 
-## workfow overview
+## workflow overview
 
 *Implemented in main_create_3d_volume.ipynb with support code in model.py and data.py*
 
