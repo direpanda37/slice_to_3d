@@ -30,3 +30,7 @@ env/
 .idea/
 .vscode/
 
+# data files
+*predict.png
+*.stl
+
