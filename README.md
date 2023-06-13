@@ -33,9 +33,7 @@ This deep neural network is implemented with Keras functional API, which makes i
 
 Output from the network is a 512*512 which represents mask that should be learned. Sigmoid activation function makes sure that mask pixels are in [0, 1] range.
 
-## How to use
-
-### Dependencies
+### dependencies
 
 This tutorial depends on the following libraries:
 
@@ -43,6 +41,7 @@ This tutorial depends on the following libraries:
 * Tensorflow (used 2.12), Keras >= 1.0 for building a model, training/loading weights, and segmenting images
 * Scikit.measure, STL for constructing 3D model
 * Git Large File System had was required for uploaded the weight file to GitHub
+* Used VSCode with no issues
 
 ### follow the main_create_3d_volume notebook
 
