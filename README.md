@@ -29,7 +29,7 @@ Using electron microscopy (vEM) cell images to create a 3D model is as follows:
 - Load the stack of images as a 3D [NumPy](https://numpy.org/doc/stable/) array using [imageio.imread()](https://imageio.readthedocs.io/en/v2.16.1/_autosummary/imageio.imread.html).
 - Use the [marching cubes algorithm](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.marching_cubes) from the scikit-image submodule `skimage.measure` to conver
 
-## UNet model
+## unet model
 ![UNet Architecture](img/u-net-architecture.png)
 This deep neural network is implemented with Keras functional API, which makes it extremely easy to experiment with different interesting architectures.
 

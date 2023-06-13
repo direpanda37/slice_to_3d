@@ -9,7 +9,10 @@ from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
 
-# originally from https://github.com/zhixuhao/unet
+#[Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation]
+# (http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
+#
+# this code originally from https://github.com/zhixuhao/unet
 # possibly from Coursera Deep Learning course on Convolutional Neural Networks, segmentation assignment
 
 def unet_model(pretrained_weights=None, input_size=(256, 256, 1), print_summary=False):
@@ -66,6 +69,7 @@ def unet_model(pretrained_weights=None, input_size=(256, 256, 1), print_summary=
         model.summary()
 
     if(pretrained_weights != None):
+        assert os.path.isfile(pretrained_weights), "missing pretrained weights file {0}".format(pretrained_weights)
         model.load_weights(pretrained_weights)
         
     return model
