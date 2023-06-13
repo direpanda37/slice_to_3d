@@ -7,8 +7,6 @@
 - **Proof of Concept**
 - Streamline the use of volumetric electron microscopy (vEM) cell images to create a 3D model for the purpose of gaining *"deeper understanding of the cellular and subcellular organization of tumor cells and their interactions with the tumor microenvironment (to) shed light on how cancer evolves and guide effective therapy choices."*
 - Provide models and tools for researchers to tailor to meet their needs
-- Support an interative training and test model, allowing researchers to start/stop and adjust without losing existing progress
-- Take advantage of hardware acceleration
 
 ## workfow overview
 
