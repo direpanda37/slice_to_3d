@@ -1,3 +1,5 @@
+*Two mitochondria walk into a bar.  The first one says, "Where's the bartender?  Where's server?"  The second one says, "There's no cell reception here."*
+
 ## references
   [*Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation*](http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
   
