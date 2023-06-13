@@ -1,3 +1,5 @@
+*Two mitochondria walk into a bar.  The first one says, "Where's the bartender?  Where's server?"  The second one says, "There's no cell reception here."*
+
 ## references
   [*Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation*](http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
   
@@ -7,10 +9,8 @@
 - **Proof of Concept**
 - Streamline the use of volumetric electron microscopy (vEM) cell images to create a 3D model for the purpose of gaining *"deeper understanding of the cellular and subcellular organization of tumor cells and their interactions with the tumor microenvironment (to) shed light on how cancer evolves and guide effective therapy choices."*
 - Provide models and tools for researchers to tailor to meet their needs
-- Support an interative training and test model, allowing researchers to start/stop and adjust without losing existing progress
-- Take advantage of hardware acceleration
 
-## workfow overview
+## workflow overview
 
 *Implemented in main_create_3d_volume.ipynb with support code in model.py and data.py*
 
@@ -29,39 +29,36 @@ Using electron microscopy (vEM) cell images to create a 3D model is as follows:
 - Load the stack of images as a 3D [NumPy](https://numpy.org/doc/stable/) array using [imageio.imread()](https://imageio.readthedocs.io/en/v2.16.1/_autosummary/imageio.imread.html).
 - Use the [marching cubes algorithm](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.marching_cubes) from the scikit-image submodule `skimage.measure` to conver
 
-## UNet Model
+## UNet model
 ![UNet Architecture](img/u-net-architecture.png)
 This deep neural network is implemented with Keras functional API, which makes it extremely easy to experiment with different interesting architectures.
 
 Output from the network is a 512*512 which represents mask that should be learned. Sigmoid activation function makes sure that mask pixels are in [0, 1] range.
 
-## How to use
+Weights are stored in .hdf5 file and are > 370Mb for the current UNet model
 
-### Dependencies
+## dependencies
 
 This tutorial depends on the following libraries:
 
-* Tensorflow
-* Keras >= 1.0
+* Python 3.10 was used, but should work with as far back as 2.7 with some code tweaks
+* Tensorflow (used 2.12), Keras >= 1.0 for building a model, training/loading weights, and segmenting images
+* Scikit.measure, STL for constructing 3D model
+* Git Large File System had was required for uploaded the weight file to GitHub
+* Used VSCode with no issues
 
-Also, this code should be compatible with Python versions 2.7-3.5.
+## start here
 
-### follow the main_create_3d_volume notebook
+Code entry is in main_create_3d_volume.ipynb notebook
 
 You will see the predicted results of test image in data/membrane/test and a 3d model in stl
 
-## About Keras
+## additional resources
 
-Keras is a minimalist, highly modular neural networks library, written in Python and capable of running on top of either TensorFlow or Theano. It was developed with a focus on enabling fast experimentation. Being able to go from idea to result with the least possible delay is key to doing good research.
+[CREMI: MICCAI Challenge on Circuit Reconstruction from Electron Microscopy Images](https://cremi.org/) Ancient challenge (2016), but has datasets may be worth exploring: 1250  × 1250 × 125  fly brain images. Each volume has neuron and synapse labeling and annotations for pre- and post-synaptic partners.
 
-Use Keras if you need a deep learning library that:
+[MitoEM Challenge: Large-scale 3D Mitochondria Instance Segmentation](https://mitoem.grand-challenge.org/) A more recent challenge (2021).More datasets that are worth exploring: 1000x4096x4096 mitochondria image volumes are acquired from a rat (Mito-R) and a human (Mito-H) tissue
 
-allows for easy and fast prototyping (through total modularity, minimalism, and extensibility).
-supports both convolutional networks and recurrent networks, as well as combinations of the two.
-supports arbitrary connectivity schemes (including multi-input and multi-output training).
-runs seamlessly on CPU and GPU.
-Read the documentation [Keras.io](http://keras.io/)
-
-Keras is compatible with: Python 2.7-3.5.
+[*Din & Yu in Nature: Training a deep learning model for single-cell segmentation without manual annotation*](https://www.nature.com/articles/s41598-021-03299-4#code-availability) "Generating training data is expensive and a major hindrance in the wider adoption of machine learning based methods for cell segmentation. Here we present an alternative strategy that trains CNNs without any human-labeled data. We show that our method is able to produce accurate segmentation models, and is applicable to both fluorescence and bright-field images, and requires little to no prior knowledge of the signal characteristics."
 
 
