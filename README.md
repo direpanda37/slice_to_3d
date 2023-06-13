@@ -12,6 +12,8 @@
 
 ## workfow overview
 
+*Implemented in main_create_3d_volume.ipynb with support code in model.py and data.py*
+
 Using electron microscopy (vEM) cell images to create a 3D model is as follows:
 - Take a stack of vEM slices of tissue and 
   - pre-process the images as needed and scale them to 512x512
