@@ -43,7 +43,9 @@ This tutorial depends on the following libraries:
 * Git Large File System had was required for uploaded the weight file to GitHub
 * Used VSCode with no issues
 
-### follow the main_create_3d_volume notebook
+### run
+
+Code entry is in main_create_3d_volume notebook
 
 You will see the predicted results of test image in data/membrane/test and a 3d model in stl
 
