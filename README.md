@@ -27,13 +27,15 @@ Using electron microscopy (vEM) cell images to create a 3D model is as follows:
 - Load the stack of images as a 3D [NumPy](https://numpy.org/doc/stable/) array using [imageio.imread()](https://imageio.readthedocs.io/en/v2.16.1/_autosummary/imageio.imread.html).
 - Use the [marching cubes algorithm](https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.marching_cubes) from the scikit-image submodule `skimage.measure` to conver
 
-## UNet Model
+## UNet model
 ![UNet Architecture](img/u-net-architecture.png)
 This deep neural network is implemented with Keras functional API, which makes it extremely easy to experiment with different interesting architectures.
 
 Output from the network is a 512*512 which represents mask that should be learned. Sigmoid activation function makes sure that mask pixels are in [0, 1] range.
 
-### dependencies
+Weights are stored in .hdf5 file and are > 370Mb for the current UNet model
+
+## dependencies
 
 This tutorial depends on the following libraries:
 
@@ -43,9 +45,9 @@ This tutorial depends on the following libraries:
 * Git Large File System had was required for uploaded the weight file to GitHub
 * Used VSCode with no issues
 
-### run
+## start here
 
-Code entry is in main_create_3d_volume notebook
+Code entry is in main_create_3d_volume.ipynb notebook
 
 You will see the predicted results of test image in data/membrane/test and a 3d model in stl
 
