@@ -3,7 +3,7 @@
 ## references
   [*Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation*](http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
   
-  [*Machireddy et al, 2021, Robust Segmentation of Cellular Ultrastructure on Sparsely Labeled 3D Electron Microscopy Images using Deep Learning*](https://www.biorxiv.org/content/10.1101/2021.05.27.446019v1.full)
+  [*Machireddy et al., 2021, Robust Segmentation of Cellular Ultrastructure on Sparsely Labeled 3D Electron Microscopy Images using Deep Learning*](https://www.biorxiv.org/content/10.1101/2021.05.27.446019v1.full)
 
 ## objectives
 - **Proof of Concept**
@@ -18,8 +18,8 @@ Using electron microscopy (vEM) cell images to create a 3D model is as follows:
 - Take a stack of vEM slices of tissue and 
   - pre-process the images as needed and scale them to 512x512
 - If training the model
-  - optionally apply data augmentation to increase the training dataset and push the images through the the training process
-  - optionally, load a pretrained model and use additional training to fine-tune
+  - optionally apply data augmentation to increase the training dataset and push the images through the training process
+  - optionally, load a pre-trained model and use additional training to fine-tune
   - train the model, saving checkpoints periodically and reporting progress as the model is training
   - save the final model parameters/weights
 - If segmenting images with an existing model
@@ -39,19 +39,19 @@ Weights are stored in .hdf5 file and are > 370Mb for the current UNet model
 
 ## dependencies
 
-This tutorial depends on the following libraries:
+This notebook depends on the following:
 
-* Python 3.10 was used, but should work with as far back as 2.7 with some code tweaks
-* Tensorflow (used 2.12), Keras >= 1.0 for building a model, training/loading weights, and segmenting images
-* Scikit.measure, STL for constructing 3D model
-* Git Large File System had was required for uploaded the weight file to GitHub
-* Used VSCode with no issues
+* Python 3.10 was used, but it should work as far back as 2.7 with some code tweaks
+* Tensorflow 2.12 was used, Keras >= 1.0 for building a model, training/loading weights, and segmenting images
+* Scikit.measure, STL for constructing the 3D model
+* Git Large File System was required for uploaded the weight file to GitHub
+* VSCode
 
 ## start here
 
 Code entry is in main_create_3d_volume.ipynb notebook
 
-You will see the predicted results of test image in data/membrane/test and a 3d model in stl
+You will see the predicted results of the test image in data/*/test and a 3d model in data/*/stl
 
 ## additional resources
 
