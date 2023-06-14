@@ -54,7 +54,7 @@ def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image
                     mask_color_mode = "grayscale",image_save_prefix  = "image",mask_save_prefix  = "mask",
                     flag_multi_class = False,num_class = 2,save_to_dir = None,target_size = (256,256),seed = 1):
     '''
-    can generate image and mask at the same time
+    image augmentation: can generate image and mask at the same time
     use the same seed for image_datagen and mask_datagen to ensure the transformation for image and mask is the same
     if you want to visualize the results of generator, set save_to_dir = "your path"
     '''
@@ -88,13 +88,19 @@ def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image
 
 
 def testGenerator(test_path,num_image = 30,target_size = (256,256),flag_multi_class = False,as_gray = True):
+    '''
+    Reads in a series of images with sequential file names, normalizes and rescales the images,
+    and returns them all as a list
+    '''
     for i in range(num_image):
-        img = io.imread(os.path.join(test_path,"%d.png"%i),as_gray = as_gray)
-        img = img / 255
-        img = trans.resize(img,target_size)
-        img = np.reshape(img,img.shape+(1,)) if (not flag_multi_class) else img
-        img = np.reshape(img,(1,)+img.shape)
-        yield img
+        image_file = os.path.join(test_path, "%d.png" % i)
+        if os.path.isfile(image_file):
+            img = io.imread(image_file,as_gray = as_gray)
+            img = img / 255
+            img = trans.resize(img,target_size)
+            img = np.reshape(img,img.shape+(1,)) if (not flag_multi_class) else img
+            img = np.reshape(img,(1,)+img.shape)
+            yield img
 
 
 def geneTrainNpy(image_path,mask_path,flag_multi_class = False,num_class = 2,image_prefix = "image",mask_prefix = "mask",image_as_gray = True,mask_as_gray = True):
