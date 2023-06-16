@@ -61,4 +61,6 @@ You will see the predicted results of the test image in data/*/test and a 3d mod
 
 [*Din & Yu in Nature: Training a deep learning model for single-cell segmentation without manual annotation*](https://www.nature.com/articles/s41598-021-03299-4#code-availability) "Generating training data is expensive and a major hindrance in the wider adoption of machine learning based methods for cell segmentation. Here we present an alternative strategy that trains CNNs without any human-labeled data. We show that our method is able to produce accurate segmentation models, and is applicable to both fluorescence and bright-field images, and requires little to no prior knowledge of the signal characteristics."
 
+[*Edlund et. al. LIVECell—A large-scale dataset for label-free live cell segmentation*](https://www.nature.com/articles/s41592-021-01249-6#data-availability) "we present LIVECell, a large, high-quality, manually annotated and expert-validated dataset of phase-contrast images, consisting of over 1.6 million cells from a diverse set of cell morphologies and culture densities. To further demonstrate its use, we train convolutional neural network-based models using LIVECell and evaluate model segmentation accuracy with a proposed a suite of benchmarks."
+
 
