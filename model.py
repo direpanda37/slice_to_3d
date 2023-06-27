@@ -8,6 +8,7 @@ from keras.layers import *
 from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
+import platform
 
 #[Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation]
 # (http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
@@ -62,13 +63,16 @@ def unet_model(pretrained_weights=None, input_size=(256, 256, 1), print_summary=
 
     # Use Adam optimizer for training model
     # must use legacy version on Apple M1/M2 :-(
-    opt = legacy.Adam(learning_rate = 1e-4)
+    if platform.processor() in ['arm', 'arm64']:
+        opt = legacy.Adam(learning_rate = 1e-4)
+    else:
+        opt = Adam(learning_rate = 1e-4)
     model.compile(optimizer = opt, loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     if(print_summary):
         model.summary()
 
-    if(pretrained_weights != None):
+    if pretrained_weights is not None:
         assert os.path.isfile(pretrained_weights), "missing pretrained weights file {0}".format(pretrained_weights)
         model.load_weights(pretrained_weights)
         
