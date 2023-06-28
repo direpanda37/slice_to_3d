@@ -1,23 +1,22 @@
-import numpy as np 
-import os
-import skimage.io as io
-import skimage.transform as trans
-import numpy as np
-from keras.models import *
-from keras.layers import *
-from keras.optimizers import *
-from keras.callbacks import ModelCheckpoint, LearningRateScheduler
-from keras import backend as keras
-import platform
+"""
+[Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation]
+(http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
 
-#[Ronneberger et al, 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation]
-# (http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/)
-#
-# this code originally from https://github.com/zhixuhao/unet
-# possibly from Coursera Deep Learning course on Convolutional Neural Networks, segmentation assignment
+This code is originally from https://github.com/zhixuhao/unet, possibly also from the
+Coursera Deep Learning course on Convolutional Neural Networks, segmentation assignment
+"""
+
+# pylint: disable=line-too-long, too-many-locals
+
+import os
+import platform
+from keras.models import Model
+from keras.layers import Conv2D, Dropout, MaxPooling2D, Input, concatenate, UpSampling2D
+from keras.optimizers import Adam
+import keras.optimizers.legacy as legacy_optimizers
 
 def unet_model(pretrained_weights=None, input_size=(256, 256, 1), print_summary=False):
-    # Builds stock UNet CNN using TensorFlow
+    """Builds stock UNet CNN using TensorFlow"""
     inputs = Input(input_size)
     conv1 = Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(inputs)
     conv1 = Conv2D(64, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv1)
@@ -63,17 +62,17 @@ def unet_model(pretrained_weights=None, input_size=(256, 256, 1), print_summary=
 
     # Use Adam optimizer for training model
     # must use legacy version on Apple M1/M2 :-(
-    if platform.processor() in ['arm', 'arm64']:
-        opt = legacy.Adam(learning_rate = 1e-4)
+    if platform.system().lower() == "darwin" and platform.processor().lower() in ['arm', 'arm64']:
+        opt = legacy_optimizers.Adam(learning_rate = 1e-4)
     else:
         opt = Adam(learning_rate = 1e-4)
     model.compile(optimizer = opt, loss = 'binary_crossentropy', metrics = ['accuracy'])
-    
-    if(print_summary):
+
+    if print_summary:
         model.summary()
 
     if pretrained_weights is not None:
-        assert os.path.isfile(pretrained_weights), "missing pretrained weights file {0}".format(pretrained_weights)
+        assert os.path.isfile(pretrained_weights), f"missing pretrained weights file {pretrained_weights}"
         model.load_weights(pretrained_weights)
-        
+
     return model
